@@ -1,9 +1,9 @@
-# Week 1: Intro to scientific inquiry
+# Week 4: Probability and estimation
 
 
 ### Agenda
 
-- Purpose of the course  
-- "Basement Tapes" discussion  
-- Syllabus  
-- Logic and structure of empirical research  
+- Three distributions: population, sample, sampling  
+- Central Limit Theorem   
+- Interval estimation   
+- Point estimation  

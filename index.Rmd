@@ -27,6 +27,10 @@ output:
     dev = 'svglite'
   )
   xaringanExtra::use_panelset()
+  
+  library(tidyverse)
+  library(haven)
+  df <- read_spss('afrobarometer_r9_Benin.sav')
 ```
 
 
@@ -40,177 +44,281 @@ knitr::include_graphics("assets/classlogo.png")
 ]
 
 .pull-right[
-# 01 - Introductions
+# 04 - Probability and inference
 
-- Purpose of the course
-
-- "Basement Tapes" discussion
-
-- Syllabus, etc
-
-- Scientific inquiry
+- Three distributions    
+- Central Limit Theorem   
+- Interval estimation   
+- Point estimation 
 
 ]
 
+---
+# The goal is inference
+
+> Statistical inference is the process of using sample statistics to learn about properties of a broader population.
+  
+- Used for 
+  - describing an unobserved/unobservable population  
+  - differentiating systematic vs random patterns
+  
+- Two approaches to statistical inference:  
+  - Interval estimation: construct a plausible range around your estimate.   
+  - Hypothesis testing: calculate probability of observing your sample stat given some assumption about the population.  
+  
+  
+---
+# Know your distribtuions
+
+1. **Population**: Dist of all data from a population of cases.  
+  - Key target of inference.   
+  - Typically unobservable.  
+2. **Sample**: Dist of data from your observable sample.  
+  - Starting point for inference about population.  
+  - *What's the role of sample size???*  
+3. **Sampling distribution**: Distribution of *ALL* possible sample stats.  
+  - Basis of statistical inference.  
+  - Theoretical but oh so necessary.  
+
 
 ---
-# What's the purpose of this course?
+# Interlude: Normal curves
+### Standard scores
+
+
+- $Z$ score: distance from mean expressed as number of standard deviations
+
+$$
+Z_i = \frac{y_i - \bar{y}}{s_y}
+$$
+
+- Eileen scored a 27 on the ACT. Nina scored 1300 on the SAT. Who did better?
+  - Mean ACT score = 21, sd = 5
+  - Mean SAT score = 1050, sd = 300
+
+
+---
+# Interlude: Normal curves
+### As probability distribution
+
+```{r normaldist, fig.width=6, fig.height=4, dpi=350}
+  ggplot(NULL, aes(c(-3,3))) +
+    geom_area(stat = "function", fun = dnorm, fill = "#00998a", alpha = .5, xlim = c(-4, 4)) +
+    labs(x = "Distance from mean (Z)", y = "Probability") +
+    scale_y_continuous(breaks = NULL,
+                       expand = expansion(mult=c(0,0.05))) +
+    scale_x_continuous(breaks = c(-3:3)) +
+    coord_cartesian(xlim = c(-3.1,3.1)) +
+    theme_minimal() +
+    theme(panel.grid.minor = element_blank())
+```
+
+---
+# Central Limit Theorem (and demo)
+
+- Let $X_1, X_2, ... , X_n$ be a statistical sample of size $n$ from a population with an average $\mu$ and variance $\sigma^2$.  
+
+- Let $\bar{X}_n$ represent the the mean score of $X$ from a sample of size $n$.
+
+- CLT: As $n$ approaches infinity, $\bar{X}_n \xrightarrow[]{d} N(\mu,\sigma^2/n)$
+  - Sample means follow a normal distribution. 
+  - Mean of sampling dist is $\mu$.   
+  - SD of sampling dist is estimable: $SE=\sigma/\sqrt{n}$.  
+  
+  
+---
+# Inference
+### Key concepts
+
+- Significance: $\alpha =$ Probability of rejecting true hypothesis. Typically set at $0.05$.
+
+- Confidence: $(1-\alpha) * 100\% =$ probability of accepting a true hypothesis 
+
+- Standard error: Standard deviation of a sampling distributi   on  
+
+- $p$ value: probability of observing sample statistic of some magnitude from a defined population
+
+
+
+
+---
+# Interval estimation: embracing uncertainty
 
 .pull-left[
-### Introduce empirical research
-
-- **STATISTICS**
-  - Field concerned with collecting and analyzing data  
-  - Focused on variation and uncertainty
-
-- **THE RESEARCH PROCESS**  
-  - Roots in the scientific project  
-  - From question to findings  
-  - Evaluating research
-
-
+### Construction
+  
+$$
+\begin{aligned}
+CI &= \bar{y} \pm Z_{\alpha/2}  * \sigma_{\bar{y}}\\
+\\
+95\% CI &= \bar{y} \pm 1.96 * \sigma_{\bar{y}} \\
+\end{aligned}
+$$
 ]
 
 .pull-right[
-### Support University mission
+### Elements
 
-- Research is the best of what we do
+- Sample stat: sample mean, $\bar{y}$
 
-- Asking and answering questions is still a radical act!
+- Standard error, sample mean: $\sigma_{\bar{y}} = \frac{s_y}{\sqrt{n}}$
 
-- Scientific inquiry *can* support and strengthen free-thinking society
+- Margin of error: For 95% confidence: $1.96 * \sigma_{\bar{y}}$ 
+
+- Why it works... 
 ]
 
+---
+# Hypothesis testing
+
+> A method of inference that provides a basis for rejecting a hypothesis based on the plausibility of the data observed. 
+
+&nbsp;
+
+### Procedure
+
+1. Specify null/research hypotheses
+
+2. Set criteria for rejecting the null
+
+3. Compute test statistic  
+
+3. Conclude
 
 ---
-# Basement Tapes
-### In-class discussion
+# Setting up hypotheses
 
-1. What theory motivates Frantz’s study? Identify the key cause and the outcome he seeks to explain.  
-2. What did Frantz know from prior studies, and why were those findings seen as incomplete or insufficient?  
-3. How does Frantz test his core hypothesis? Be specific about the design of his elaborate study.  
-4. What do his results show? What are we to make of the findings? 
+- **Research hypothesis,** $H_A$
 
-For reference: [podcast](https://www.pushkin.fm/podcasts/revisionist-history/the-basement-tapes#play) (S2E10) and [study results](https://www.ahajournals.org/doi/pdf/10.1161/01.atv.9.1.129)
+- **Null hypothesis,** $H_0$
 
+- TIPS
+  - ALWAYS frame hypotheses in terms of parameters
+  - Science is all about the null. 
+  
 ---
-# Get to know the course
+# Select, test, decide
 
-- Let's visit the [living course syllabus](https://docs.google.com/document/d/1V5JLruDU9m9_eSnQqXQZ5-yDZCGlc9GZOQsVNcf3C7Q/edit?usp=sharing)
-
-- Expectations for class  
-  - We begin on time  
-  - Take notes and ask questions  
-  - Leave Slacks, chats, etc. behind
-
-- Outside of class  
-  - Do the reading  
-  - Give yourself time to do assignments  
-  - Be in touch!  
-
----
-class: inverse, middle
-
-# Foundations of scientific inquiry
-
-1. Where does science come from?  
-2. What defines scientific research?  
-
-
----
-# Origins of the modern scientific project
+> A test statistic is a number that summarizes how far your sample information is from the parameter value in the null hypothesis.  
 
 .pull-left[
+### Which test?  
+- $t$ statistic for
+  - sample mean
+  - difference of means
+  - OLS regression coefficient
+- Tabular analysis: $\chi^2$
+]
 
-```{r, out.width="70%"}
-knitr::include_graphics("assets/bacon.jpg")
+.pull-right[
+### Decision rule for rejecting
+
+- Choose significance, typically $\alpha = 0.05$  
+
+- Reject null if $p \leq \alpha$  
+- Fail to reject otherwise
+]
+
+---
+class: inverse
+# t-test in action (population mean)
+
+- I have data for ONE numeric variable.
+- I want to test hypotheses about a population mean. $\mu$
+
+### Our task
+- Data: Afrobarometer, Round 9 
+- Question: Q78A, China's influence good/bad
+
+
+---
+# Population mean (t-test)
+
+.left-column[
+### Setup
+]
+
+.right-column[
+> Does the population believe that China's political and economic influence is positive? 
+
+- State hypotheses
+  
+- Identify test statistic
+  
+- Set decision rule
+  
+- Calculate test statistic and p-value
+  
+- Reject/fail to reject the null
+
+]
+
+---
+# Population mean (t-test)
+
+.left-column[
+### Setup
+### Hypotheses
+]
+
+.right-column[
+- $H_A:~\mu > 3$
+  
+- $H_0:~\mu \leq 3$
+
+- Statistics from Benin:  
+
+```{r tpoptab,echo=TRUE}
+df <-
+  df %>%
+  mutate(
+    ch_inf = if_else(Q78A %in% 1:5, Q78A, NA)
+  )
+summary(df$ch_inf)
 ```
 
 ]
 
-.pull-right[
+---
+# Population mean (t-test)
 
-### Bacon's new empiricism
+.left-column[
 
-- Knowledge through observation and experimentation
+### Setup
+### Hypotheses
+### t-stats
 
-- Inductive reasoning
-  - Move from specific to general 
-  - Probabilistic claims    
-  - Conclusions open to new evidence
+]
+
+.right-column[
+
+- Appropriate test statistic: $t$  
+- 5% significance, One-sided test  
+- Reject null if...
   
-- Progress by rejecting bad ideas 
-
+```{r,echo=TRUE}
+t.test(df$ch_inf, mu = 3, alternative = 'greater')
+```
 ]
 
 ---
-# Logic and structure of scientific inquiry
+# Population mean (t-test)
 
-.panelset[
-.panel[.panel-name[Process]
-
-- Question and expectations
-
-- Study 
-  - Research design (plan)  
-  - Data collection  
-  - Analysis  
-  
-- Report findings  
-
-- New questions
-
+.left-column[
+### Setup
+### Hypotheses
+### t-stats
+### Reject?
 ]
 
-.panel[.panel-name[Question]
+.right-column[
 
-.pull-left[ 
-- Study "effects of causes"
-  - Exposure variable: cause, $X$
-  - Outcome variable: effect, $Y$
 
-- Theory: what we *think* we know about $X \rightarrow Y$
+- Reject or not?
 
-- Hypotheses: observable implications of theory
-]
-
-.pull-right[
-
-> **Theories** are general stories about the way things work. 
-
-> **Hypotheses** are specific predictions, derived from theory, about what we should see in the data.
+> I reject the null and conclude that the population views China's influence positively. It is unlikely that we observe our sample mean of 3.9 by chance alone (t = 35, p < 0.05, one-sided).
 
 ]
-]
-
-.panel[.panel-name[Study]
-
-- Research design
-  - *Experiment (RCT)*: the researcher exposes units to different values of treatment at random.    
-  - *Observational*: the researcher observes and records values of the variables as they are.  
-
-- Data collection  
-
-- Statistical analysis  
-  - Characterize the relationship  
-  - Is it systematic? 
-
-]
-
-.panel[.panel-name[Report]
-
-- Answer your question given the analysis
-
-- Consider the validity of your conclusion  
-  - Internal validity: have you ruled out alternative explanations and sources of bias?  
-  - External validity: do the results generalize to other cases, places, treatments, and outcomes?
-
-- What do your findings mean for extant theory?
-
-]
-]
-
-
 
 
 ---
