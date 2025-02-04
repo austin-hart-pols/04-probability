@@ -1,0 +1,238 @@
+---
+title: Course slides
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["default", "assets/sydney-fonts.css", "assets/sydney.css"]
+    seal: false
+    nature:
+      beforeInit: ["assets/remark-zoom.js"]
+      highlightStyle: github
+      highlightLines: true
+      highlightLanguage: ["r"]
+      countIncrementalSlides: false      
+      ratio: "16:9"
+    includes:
+      in_header: "assets/mathjax-equation-numbers.html"  
+---
+
+```{r setup, include=FALSE}
+  options(htmltools.dir.version = FALSE)
+  knitr::opts_chunk$set(
+    message = F, 
+    warning = F, 
+    eval = T, 
+    echo = F,
+    fig.align = 'center', 
+    dev = 'svglite'
+  )
+  xaringanExtra::use_panelset()
+```
+
+
+
+class: partial-bg50, middle
+
+.pull-left[
+```{r, out.width="70%"}
+knitr::include_graphics("assets/classlogo.png")
+```
+]
+
+.pull-right[
+# 01 - Introductions
+
+- Purpose of the course
+
+- "Basement Tapes" discussion
+
+- Syllabus, etc
+
+- Scientific inquiry
+
+]
+
+
+---
+# What's the purpose of this course?
+
+.pull-left[
+### Introduce empirical research
+
+- **STATISTICS**
+  - Field concerned with collecting and analyzing data  
+  - Focused on variation and uncertainty
+
+- **THE RESEARCH PROCESS**  
+  - Roots in the scientific project  
+  - From question to findings  
+  - Evaluating research
+
+
+]
+
+.pull-right[
+### Support University mission
+
+- Research is the best of what we do
+
+- Asking and answering questions is still a radical act!
+
+- Scientific inquiry *can* support and strengthen free-thinking society
+]
+
+
+---
+# Basement Tapes
+### In-class discussion
+
+1. What theory motivates Frantz’s study? Identify the key cause and the outcome he seeks to explain.  
+2. What did Frantz know from prior studies, and why were those findings seen as incomplete or insufficient?  
+3. How does Frantz test his core hypothesis? Be specific about the design of his elaborate study.  
+4. What do his results show? What are we to make of the findings? 
+
+For reference: [podcast](https://www.pushkin.fm/podcasts/revisionist-history/the-basement-tapes#play) (S2E10) and [study results](https://www.ahajournals.org/doi/pdf/10.1161/01.atv.9.1.129)
+
+---
+# Get to know the course
+
+- Let's visit the [living course syllabus](https://docs.google.com/document/d/1V5JLruDU9m9_eSnQqXQZ5-yDZCGlc9GZOQsVNcf3C7Q/edit?usp=sharing)
+
+- Expectations for class  
+  - We begin on time  
+  - Take notes and ask questions  
+  - Leave Slacks, chats, etc. behind
+
+- Outside of class  
+  - Do the reading  
+  - Give yourself time to do assignments  
+  - Be in touch!  
+
+---
+class: inverse, middle
+
+# Foundations of scientific inquiry
+
+1. Where does science come from?  
+2. What defines scientific research?  
+
+
+---
+# Origins of the modern scientific project
+
+.pull-left[
+
+```{r, out.width="70%"}
+knitr::include_graphics("assets/bacon.jpg")
+```
+
+]
+
+.pull-right[
+
+### Bacon's new empiricism
+
+- Knowledge through observation and experimentation
+
+- Inductive reasoning
+  - Move from specific to general 
+  - Probabilistic claims    
+  - Conclusions open to new evidence
+  
+- Progress by rejecting bad ideas 
+
+]
+
+---
+# Logic and structure of scientific inquiry
+
+.panelset[
+.panel[.panel-name[Process]
+
+- Question and expectations
+
+- Study 
+  - Research design (plan)  
+  - Data collection  
+  - Analysis  
+  
+- Report findings  
+
+- New questions
+
+]
+
+.panel[.panel-name[Question]
+
+.pull-left[ 
+- Study "effects of causes"
+  - Exposure variable: cause, $X$
+  - Outcome variable: effect, $Y$
+
+- Theory: what we *think* we know about $X \rightarrow Y$
+
+- Hypotheses: observable implications of theory
+]
+
+.pull-right[
+
+> **Theories** are general stories about the way things work. 
+
+> **Hypotheses** are specific predictions, derived from theory, about what we should see in the data.
+
+]
+]
+
+.panel[.panel-name[Study]
+
+- Research design
+  - *Experiment (RCT)*: the researcher exposes units to different values of treatment at random.    
+  - *Observational*: the researcher observes and records values of the variables as they are.  
+
+- Data collection  
+
+- Statistical analysis  
+  - Characterize the relationship  
+  - Is it systematic? 
+
+]
+
+.panel[.panel-name[Report]
+
+- Answer your question given the analysis
+
+- Consider the validity of your conclusion  
+  - Internal validity: have you ruled out alternative explanations and sources of bias?  
+  - External validity: do the results generalize to other cases, places, treatments, and outcomes?
+
+- What do your findings mean for extant theory?
+
+]
+]
+
+
+
+
+---
+class: partial-bg50, middle, center
+
+.pull-right[
+
+# Contact Me
+
+<a href="mailto:ahart@american.edu">
+`r fontawesome::fa("paper-plane")` ahart@american.edu
+</a>
+
+<a href="https://austin-hart.netlify.app">
+`r fontawesome::fa("house-chimney-user")` austin-hart.netlify.app
+</a>
+
+
+<a href="https://github.com/austin-hart-pols">
+`r fontawesome::fa("github")` @austin-hart-pols
+</a>
+
+<br><br><br>
+
+]
